@@ -8,7 +8,8 @@ import { nanoid } from '@/lib/utils'
 export const runtime = 'edge'
 
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY
+  apiKey: process.env.OPENAI_API_KEY,
+  organization: process.env.OPENAI_ORG_ID
 })
 
 const openai = new OpenAIApi(configuration)
@@ -29,9 +30,9 @@ export async function POST(req: Request) {
   }
 
   const res = await openai.createChatCompletion({
-    model: 'gpt-3.5-turbo',
+    model: 'gpt-4',
     messages,
-    temperature: 0.7,
+    temperature: 0,
     stream: true
   })
 
